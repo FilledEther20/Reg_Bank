@@ -2,6 +2,7 @@ package sqlc
 
 import (
 	"context"
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -71,10 +72,12 @@ func TestTransferTx(t *testing.T) {
 		require.NotZero(t, toEntry.ID)
 		require.NotZero(t, toEntry.CreatedAt)
 
+		fmt.Println(result.FromAccount.ID)
+
 		_, err = store.GetEntry(context.Background(), toEntry.ID)
 		require.NoError(t, err)
 
-		// // check accounts
+		// check accounts
 		// fromAccount := result.FromAccount
 		// require.NotEmpty(t, fromAccount)
 		// require.Equal(t, account1.ID, fromAccount.ID)

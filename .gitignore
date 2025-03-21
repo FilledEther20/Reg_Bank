@@ -1,0 +1,35 @@
+# Binaries & compiled files
+*.exe
+*.out
+*.so
+*.dll
+*.dmg
+*.app
+*.bin
+*.o
+*.a
+
+# Cache & temp files
+*.log
+*.tmp
+*.swp
+
+# Go build artifacts
+/go.sum
+/go.work
+/go.work.sum
+cover.out
+
+# Secrets & environment files
+.env
+*.key
+*.pem
+*.crt
+
+# IDE/editor-specific files
+.vscode/
+.idea/
+*.iml
+
+# Vendor directory (optional, if using modules)
+vendor/
