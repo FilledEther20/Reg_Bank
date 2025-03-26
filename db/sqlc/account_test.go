@@ -2,6 +2,7 @@ package sqlc
 
 import (
 	"context"
+	"database/sql"
 	"testing"
 	"time"
 
@@ -61,9 +62,7 @@ func TestUpdateAccount(t *testing.T) {
 		Balance: newBalance,
 	}
 
-	err := testQueries.UpdateAccount(context.Background(), arg)
-	require.NoError(t, err)
-	updatedAccount, err := testQueries.GetAccount(context.Background(), account.ID)
+	updatedAccount, err := testQueries.UpdateAccount(context.Background(), arg)
 	require.NoError(t, err)
 	require.Equal(t, updatedAccount.Balance, newBalance)
 }
@@ -79,6 +78,7 @@ func TestDeleteAccount(t *testing.T) {
 	// Verifying the operation passed
 	deletedAccount, err := testQueries.GetAccount(context.Background(), account.ID)
 	require.Error(t, err)
+	require.EqualError(t, err, sql.ErrNoRows.Error())
 	require.Empty(t, deletedAccount)
 }
 
