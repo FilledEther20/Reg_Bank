@@ -19,6 +19,9 @@ sqlc:
 server:
 	go run main.go
 
+mock:
+	mockgen -package mockdb -destination db/mock/store.go github.com/FilledEther20/Reg_Bank/db/sqlc Store
+
 test:
 	go test -v -cover ./...
 

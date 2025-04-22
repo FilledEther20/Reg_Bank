@@ -6,18 +6,18 @@ import (
 )
 
 type Server struct {
-	store  *sqlc.Store
+	store  sqlc.Store
 	router *gin.Engine
 }
 
 // To create a New http server and setup routing
-func NewServer(store *sqlc.Store) *Server {
+func NewServer(store sqlc.Store) *Server {
 	server := &Server{store: store}
 	router := gin.Default()
 
 	router.POST("/accounts", server.createAccount)
 	router.GET("/accounts/:id", server.getAccount)
-	router.GET("/accounts", server.listAccount)
+	router.GET("/accounts", server.listAccount) // For listing accounts in a page by using query params
 
 	server.router = router
 	return server

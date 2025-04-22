@@ -10,7 +10,6 @@ import (
 	_ "github.com/lib/pq"
 )
 
-
 func main() {
 	config, err := util.LoadConfig(".")
 	if err != nil {
@@ -22,7 +21,7 @@ func main() {
 	}
 
 	store := sqlc.NewStore(conn)
-	server := api.NewServer(&store)
+	server := api.NewServer(store)
 	err = server.Start(config.ServerAddress)
 
 	if err != nil {
