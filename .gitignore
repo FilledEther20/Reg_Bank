@@ -33,3 +33,5 @@ cover.out
 
 # Vendor directory (optional, if using modules)
 vendor/
+
+.DS_Store

@@ -28,6 +28,7 @@ func (s *Server) Start(address string) error {
 	return s.router.Run(address)
 }
 
+// Creates Error Response
 func errorResponse(err error) gin.H {
 	return gin.H{"error": err.Error()}
 }
