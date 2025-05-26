@@ -3,6 +3,8 @@ package api
 import (
 	"github.com/FilledEther20/Reg_Bank/db/sqlc"
 	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
+	"github.com/go-playground/validator/v10"
 )
 
 type Server struct {
@@ -15,9 +17,14 @@ func NewServer(store sqlc.Store) *Server {
 	server := &Server{store: store}
 	router := gin.Default()
 
+	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
+		v.RegisterValidation("currency", validCurrency)
+	}
+
 	router.POST("/accounts", server.createAccount)
 	router.GET("/accounts/:id", server.getAccount)
 	router.GET("/accounts", server.listAccount) // For listing accounts in a page by using query params
+	router.POST("/transfers", server.createTransfer)
 
 	server.router = router
 	return server
