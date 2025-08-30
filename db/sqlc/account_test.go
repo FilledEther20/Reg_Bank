@@ -12,8 +12,9 @@ import (
 
 // Has been separated so that the running of 1 unit test doesnot effect the result of another also this function would be used in mostly all of the unit tests.
 func createRandomAccount(t *testing.T) Account {
+	user:=createRandomUser(t)
 	arg := CreateAccountParams{
-		Owner:    util.RandomOwner(6),
+		Owner:    user.Username,
 		Balance:  util.RandomBalance(),
 		Currency: util.RandomCurrency(),
 	}
@@ -43,9 +44,6 @@ func TestGetAccount(t *testing.T) {
 	receivedAccount, err := testQueries.GetAccount(context.Background(), account.ID)
 
 	require.NoError(t, err) // To ensure no error returned
-
-	// The below assertion might fail if the timestamp creates issue
-	// require.Equal(t, account, receivedAccount)
 
 	require.Equal(t, account.ID, receivedAccount.ID)
 	require.Equal(t, account.Owner, receivedAccount.Owner)

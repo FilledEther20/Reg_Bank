@@ -9,6 +9,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// Helper to create random user
 func createRandomUser(t *testing.T) User {
 	arg := CreateUserParams{
 		Username:          util.RandomOwner(6),
@@ -41,16 +42,35 @@ func TestGetUser(t *testing.T) {
 	user := createRandomUser(t)
 
 	receivedUser, err := testQueries.GetUser(context.Background(), user.Username)
-
 	require.NoError(t, err)
 	require.NotEmpty(t, receivedUser)
 
-	require.Equal(t, receivedUser.Username, user.Username)
-	require.Equal(t, receivedUser.HashedPassword, user.HashedPassword)
-	require.Equal(t, receivedUser.Email, user.Email)
-	require.Equal(t, receivedUser.FullName, user.FullName)
-	require.WithinDuration(t, receivedUser.PasswordChangedAt, user.PasswordChangedAt, time.Second)
-
+	require.Equal(t, user.Username, receivedUser.Username)
+	require.Equal(t, user.HashedPassword, receivedUser.HashedPassword)
+	require.Equal(t, user.Email, receivedUser.Email)
+	require.Equal(t, user.FullName, receivedUser.FullName)
+	require.WithinDuration(t, user.PasswordChangedAt, receivedUser.PasswordChangedAt, time.Second)
+	require.WithinDuration(t, user.CreatedAt, receivedUser.CreatedAt, time.Second)
 }
 
+func TestUpdateUser(t *testing.T) {
+	user := createRandomUser(t)
 
+	newFullName := util.RandomOwner(10)
+	newEmail := util.RandomEmail(6)
+
+	arg := UpdateUserParams{
+		Username: user.Username,
+		FullName: newFullName,
+		Email:    newEmail,
+	}
+
+	updatedUser, err := testQueries.UpdateUser(context.Background(), arg)
+	require.NoError(t, err)
+	require.NotEmpty(t, updatedUser)
+
+	require.Equal(t, user.Username, updatedUser.Username) // username should stay same
+	require.Equal(t, newFullName, updatedUser.FullName)
+	require.Equal(t, newEmail, updatedUser.Email)
+	require.Equal(t, user.HashedPassword, updatedUser.HashedPassword) // password unchanged
+}
