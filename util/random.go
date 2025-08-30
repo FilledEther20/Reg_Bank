@@ -44,3 +44,10 @@ func RandomBalance() int64 {
 func RandomCurrency() string {
 	return currency[localRand.Intn(len(currency))]
 }
+
+// For generating random Email
+func RandomEmail(n int) string{
+	local_part:=RandomString(n)
+	host_name:=RandomString(6);
+	return local_part+"@"+host_name+".com";
+}

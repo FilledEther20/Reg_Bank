@@ -35,3 +35,5 @@ cover.out
 vendor/
 
 .DS_Store
+*.png
+*.md
