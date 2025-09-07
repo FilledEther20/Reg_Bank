@@ -21,7 +21,7 @@
 cover.out
 
 # Secrets & environment files
-.env
+*.env
 *.key
 *.pem
 *.crt
