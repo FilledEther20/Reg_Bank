@@ -37,7 +37,7 @@ package api
 // 			buildStubs: func(store *mockdb.MockStore) {
 // 				arg := sqlc.CreateUserParams{
 // 					Username:          user.Username,
-// 					HashedPassword:    gomock.Any().(string), // we don’t check actual hash here
+// 					HashedPassword:    gomock.Any().(string),
 // 					FullName:          user.FullName,
 // 					Email:             user.Email,
 // 					PasswordChangedAt: gomock.Any().(time.Time),

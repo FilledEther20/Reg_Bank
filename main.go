@@ -12,6 +12,7 @@ import (
 
 func main() {
 	config, err := util.LoadConfig(".")
+
 	if err != nil {
 		log.Fatal("cannot load config file", err)
 	}
@@ -21,7 +22,10 @@ func main() {
 	}
 
 	store := sqlc.NewStore(conn)
-	server := api.NewServer(store)
+	server, err := api.NewServer(config, store)
+	if err != nil {
+		log.Fatalf("There was a problem in creating server %d", err)
+	}
 	err = server.Start(config.ServerAddress)
 
 	if err != nil {
