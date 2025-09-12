@@ -21,24 +21,9 @@ The service exposes secure APIs to:
   - Secure token-based authentication with **JWT & PASETO**  
   - Role-based access control (RBAC)  
 
-- **REST & gRPC APIs**
-  - REST APIs built with **Gin**  
-  - gRPC APIs with **protobuf**  
-  - gRPC-Gateway for serving both HTTP & gRPC  
+- **REST APIs**
+  - REST APIs built with **Gin**    
   - Auto-generated Swagger documentation  
-
-- **Infrastructure & Deployment**
-  - PostgreSQL with SQLC for type-safe queries  
-  - Dockerized service & Docker Compose for local dev  
-  - Kubernetes deployment on AWS EKS  
-  - GitHub Actions for CI/CD pipelines  
-
-- **Advanced Backend Topics**
-  - Database migrations & isolation levels  
-  - Background workers with Redis + Asynq  
-  - Email verification via Gmail SMTP  
-  - Structured logging & middleware  
-  - Graceful server shutdown  
 
 ---
 
@@ -46,10 +31,8 @@ The service exposes secure APIs to:
 
 - **Language**: Go 1.22+  
 - **Framework**: Gin  
-- **Database**: PostgreSQL + SQLC  
-- **Queue**: Redis + Asynq  
-- **Auth**: JWT & PASETO  
-- **Deployment**: Docker, Kubernetes (AWS EKS)  
+- **Database**: PostgreSQL + SQLC    
+- **Auth**: JWT & PASETO   
 - **CI/CD**: GitHub Actions  
 
 ---
