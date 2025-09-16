@@ -19,7 +19,6 @@ The service exposes secure APIs to:
   - User registration & login  
   - Password hashing with **Bcrypt**  
   - Secure token-based authentication with **JWT & PASETO**  
-  - Role-based access control (RBAC)  
 
 - **REST APIs**
   - REST APIs built with **Gin**    
